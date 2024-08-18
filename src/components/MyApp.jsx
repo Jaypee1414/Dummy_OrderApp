@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from './Header'
 import Food from './Food'
+import Cart from '../UI/Cart.jsx'
 import {CartContextProvider} from '../Context/Context.jsx'
-import { ModalCartProvider } from '../Context/modalContext.jsx'
+import { ModalCartProvider } from '../Context/ModalContext.jsx'
 
 function MyApp() {
   return (
@@ -10,6 +11,7 @@ function MyApp() {
       <ModalCartProvider>
         <Header/>
         <Food/>
+        <Cart/>
       </ModalCartProvider>
     </CartContextProvider>
   )

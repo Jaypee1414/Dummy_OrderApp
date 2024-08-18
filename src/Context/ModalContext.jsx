@@ -11,7 +11,7 @@ const  ModalContext = createContext({
 
 export function ModalCartProvider({children}) {
 
-    const [modalProgress, setModalProgress] = useState()
+    const [modalProgress, setModalProgress] = useState('')
     
     const modalCartValue = {
         progress: modalProgress,

@@ -3,10 +3,10 @@ import logo from '../assets/logo.jpg'
 import Button from '../UI/Button'
 import CartContext from '../Context/Context'
 import Modal from '../UI/Modal'
-import ModalContext from '../Context/modalContext'
+import ModalContext from '../Context/ModalContext'
 
 function Header() {
-  const modalContext = useContext(ModalContext)
+  const cartModalContext = useContext(ModalContext)
   const cartContext = useContext(CartContext);
   const item = cartContext.item
 
@@ -15,7 +15,8 @@ function Header() {
   }, 0)
 
   function handleCart(){
-    modalContext.showCart()
+    cartModalContext.showCart()
+    console.log("header button click")
   }
   return (
       <div id='main-header'>

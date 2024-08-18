@@ -7,6 +7,10 @@ function Modal({open, className = '', children}) {
         if(open){
             dialog.current.showModal()
         }
+        
+        if(!open){
+          dialog.current.close()
+        }
     },[open])
   return createPortal(
     <dialog ref={dialog} className={`modal ${className}`}>
