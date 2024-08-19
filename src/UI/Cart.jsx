@@ -21,11 +21,11 @@ function Cart() {
     }
 
   return (
-    <Modal className='modal' open={cartModalContext.progress === 'cart'}>
+    <Modal className='modal' open={cartModalContext.progress === 'cart'} onClose={cartModalContext.progress === 'cart' ? handleCancelButton : null}>
         <ul>
           <h2>Food Cart</h2>
           {cartContext.item.map((data)=>(
-              <CartItem id={data.id} key={data.id} name={data.name} price={data.price} quantity={data.quantity}/>
+              <CartItem id={data.id} key={data.id} name={data.name} price={data.price} quantity={data.quantity} meal={data}/>
           ))}
         </ul>
         <p className='cart-total'> {currencyFormat.format(total)} </p>

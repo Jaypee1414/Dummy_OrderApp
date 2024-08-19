@@ -7,10 +7,9 @@ const CartContext = createContext({
 })
 
 function Reducer(state, action){
-    const updatedItems = [...state.item]
     if(action.type === 'Add_item'){
         const existingCartItemIndex = state.item.findIndex(item => item.id === action.item.id)
-
+        const updatedItems = [...state.item]
         if(existingCartItemIndex > -1){
             const ExistingItem = state.item[existingCartItemIndex]
             const updateItem = {
@@ -33,12 +32,15 @@ function Reducer(state, action){
         const existingCartItemIndex = state.item.findIndex(item => item.id === action.id)
 
         const existingCartItem = state.item[existingCartItemIndex]
-        const updatedItem= [...state.item]
+        const updatedItems = [...state.item]
         if(existingCartItem.quantity === 1){
-            updatedItem.splice(existingCartItem, 1);
+            updatedItems.splice(existingCartItem, 1);
         }else{
-            const updateitem ={...existingCartItem, quantity: existingCartItem.quantity - 1 }
-            updatedItem[existingCartItem] = updatedItem 
+            const updateitem ={
+                ...existingCartItem, 
+                quantity: existingCartItem.quantity - 1 
+            }
+            updatedItems[existingCartItem] = updateitem 
         }
 
         return {
