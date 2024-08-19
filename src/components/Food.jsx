@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import FetchFoodDisplay from '../https/Http'
+import {FetchFoodDisplay} from '../https/Http'
 import FoodCard from './FoodCard'
 
 function Food() {

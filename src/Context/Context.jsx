@@ -40,7 +40,7 @@ function Reducer(state, action){
                 ...existingCartItem, 
                 quantity: existingCartItem.quantity - 1 
             }
-            updatedItems[existingCartItem] = updateitem 
+            updatedItems[existingCartItemIndex] = updateitem  
         }
 
         return {
