@@ -4,6 +4,7 @@ import {currencyFormat} from '../UI/NumberFormatting'
 import CartContext from '../Context/Context'
 import Modal from './Modal'
 import Button from './Button'
+import CartItem from '../components/CartItem.jsx'
 function Cart() {
     const cartModalContext = useContext(ModalContext)
     const cartContext = useContext(CartContext)
@@ -15,19 +16,22 @@ function Cart() {
       cartModalContext.hideCart();
     }
 
+    function handleOpenCheckOut(){
+      cartModalContext.showCheckout()
+    }
+
   return (
     <Modal className='modal' open={cartModalContext.progress === 'cart'}>
         <ul>
+          <h2>Food Cart</h2>
           {cartContext.item.map((data)=>(
-            <li className='cart-item' key={data.id}>
-              <p>{data.name} - {data.quantity}</p>
-            </li>
+              <CartItem id={data.id} key={data.id} name={data.name} price={data.price} quantity={data.quantity}/>
           ))}
         </ul>
         <p className='cart-total'> {currencyFormat.format(total)} </p>
-        <div className='modal-actions'>
-          <Button>Check-Out</Button>
+        <div className='modal-actions'>          
           <Button className='text-button' onClick={handleCancelButton}>Cancel</Button>
+          {cartContext.item.length > 0 && <Button onClick={handleOpenCheckOut}>Proceed</Button>}
         </div>
     </Modal>    
   )
