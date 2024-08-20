@@ -10,18 +10,19 @@ export async function FetchFoodDisplay(){
 export async function postCartMeal(items, customer){
     const response = await fetch('http://localhost:3000/orders',{
         method: 'POST',
-        body: JSON.stringify({
+        body: JSON.stringify({ order :{
             items,
             customer
-        }),
+        }}),
         headers: {
             'content-type' : 'application/json'
         }
     })
+    const resdata = await response.json()
 
     if(!response.ok){
-        throw new Error("Posting new Meal Failed. Try again later")
+        throw new Error(resdata.message || "There is something wrong is something wrong. Please try again later")
     }
 
-    return response
+    return resdata.message
 }

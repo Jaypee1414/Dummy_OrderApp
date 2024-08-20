@@ -1,10 +1,10 @@
 import React from 'react'
 
-function CheckOutInput({name, ...props}){
+function CheckOutInput({id,name, type, ...props}){
   return (
     <div className='control'>
-      <label htmlFor={name}>{name}</label>
-      <input required {...props}/>
+      <label htmlFor={id}>{name}</label>
+      <input required name={name} id={id} type={type}/>
     </div>
   )
 }
