@@ -6,21 +6,17 @@ const  ModalContext = createContext({
     hideCart: () => {}, 
     showCheckout: () => {}, 
     hideCheckout: () => {}, 
+    showSuccess: () => {}, 
 })
 
 
 export function ModalCartProvider({children}) {
 
     const [modalProgress, setModalProgress] = useState('')
-    
-    const modalCartValue = {
-        progress: modalProgress,
-        showCart,
-        hideCart,
-        showCheckout, 
-        hideCheckout
-    }
 
+    function showSuccess(){
+        setModalProgress('success')
+    }
     function showCart(){
         setModalProgress('cart')
     }
@@ -35,6 +31,15 @@ export function ModalCartProvider({children}) {
 
     function hideCheckout() {
         setModalProgress('')
+    }
+ 
+    const modalCartValue = {
+        progress: modalProgress,
+        showCart,
+        hideCart,
+        showCheckout, 
+        hideCheckout,
+        showSuccess
     }
 
     return (<ModalContext.Provider value={modalCartValue}>{children}</ModalContext.Provider>)
