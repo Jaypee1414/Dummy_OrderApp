@@ -5,7 +5,6 @@ import Cart from '../UI/Cart.jsx'
 import {CartContextProvider} from '../Context/Context.jsx'
 import { ModalCartProvider } from '../Context/ModalContext.jsx'
 import CheckOut from '../UI/CheckOut.jsx'
-import Succes from '../UI/Succes.jsx'
 
 function MyApp() {
   return (

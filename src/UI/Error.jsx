@@ -3,10 +3,10 @@ import Modal from '../UI/Modal'
 
 function Error({title, message}) {
   return (
-    <>
-        <p>{title}</p>
-        <p>{message}</p>
-    </>
+    <div className='modal'>
+        <h2 className='error'>{title}</h2>
+        <p className='error'>{message}</p>
+    </div>
   )
 }
 

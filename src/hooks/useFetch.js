@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import Modal from "../UI/Modal";
 
 async function sendHtppRequest(url, config){
     const response = await fetch(url,config);
@@ -13,11 +14,15 @@ export default function useFetch(url,config,initialization){
     const [error, setError] = useState()
     const [data, setData] = useState(initialization)
     const [isloading, setIsLoading] = useState(false)
+
+    function clearData() {
+        setData(initialization)
+    }
     
-    const sendRequest = useCallback(async function sendRequest(){
+    const sendRequest = useCallback(async function sendRequest(data){
         setIsLoading(true)
         try{
-            const resData = await sendHtppRequest(url,config)
+            const resData = await sendHtppRequest(url,{...config, body: data})
             setData(resData)
         }catch(error){
             setError(error.message || "failed to fetch food")
@@ -35,6 +40,7 @@ export default function useFetch(url,config,initialization){
         error, 
         data, 
         isloading,
-        sendRequest
+        sendRequest,
+        clearData
     }
 }
