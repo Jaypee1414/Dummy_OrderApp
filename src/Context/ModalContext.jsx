@@ -3,6 +3,8 @@ import { createContext, useState } from "react"
 const  ModalContext = createContext({
     progress:  '', 
     showCart: () => {}, 
+    showOrder: () => {}, 
+    hideOrder: () => {}, 
     hideCart: () => {}, 
     showCheckout: () => {}, 
     hideCheckout: () => {}, 
@@ -32,6 +34,14 @@ export function ModalCartProvider({children}) {
     function hideCheckout() {
         setModalProgress('')
     }
+
+    function showOrder() {
+        setModalProgress('showOrder')
+    }
+
+    function hideOrder() {
+        setModalProgress('')
+    }
  
     const modalCartValue = {
         progress: modalProgress,
@@ -39,7 +49,9 @@ export function ModalCartProvider({children}) {
         hideCart,
         showCheckout, 
         hideCheckout,
-        showSuccess
+        showSuccess,
+        showOrder,
+        hideOrder
     }
 
     return (<ModalContext.Provider value={modalCartValue}>{children}</ModalContext.Provider>)

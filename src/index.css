@@ -21,6 +21,10 @@ body {
   padding: 3rem 10%;
 }
 
+#main-header .order-name{
+  padding: 0 1rem;
+}
+
 #main-header #title {
   display: flex;
   gap: 1rem;

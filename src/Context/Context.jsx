@@ -2,12 +2,15 @@ import { createContext,useReducer } from "react";
 
 const CartContext = createContext({
     item: [], // List of all items
+    order: [],
     addItem: (item) => {}, //object of item
     deleteItem: (id) =>{},
+    addAllOrder: (item) =>{},
     reset:() =>{}
 })
 
 function Reducer(state, action){
+
     if(action.type === 'Add_item'){
         const existingCartItemIndex = state.item.findIndex(item => item.id === action.item.id)
         const updatedItems = [...state.item]
@@ -50,6 +53,27 @@ function Reducer(state, action){
         }
     }
 
+    if(action.type === 'showOrder'){
+        const existingCartItemIndex = state.item.findIndex(item => item.id === action.item.id)
+        const updatedItems = [...state.item]
+        if(existingCartItemIndex > -1){
+            const ExistingItem = state.item[existingCartItemIndex]
+            const updateItem = {
+                ...ExistingItem ,
+                quantity: ExistingItem.quantity + 1
+            }
+
+            updatedItems[existingCartItemIndex] = updateItem
+        }else{
+            updatedItems.push({...action.order, quantity: 1})
+        }
+
+        return {
+            ...state,
+            order: updatedItems
+        }
+    }
+
     if(action.type === 'reset_item'){
         return {
             ...state,
@@ -61,7 +85,7 @@ function Reducer(state, action){
 }
 
 export function CartContextProvider({children}){
-    const [state, dispatch] = useReducer(Reducer, {item : []})
+    const [state, dispatch] = useReducer(Reducer, {item : [], order: []})
 
     function addItem(item){
         dispatch({
@@ -83,11 +107,19 @@ export function CartContextProvider({children}){
         })
     }
 
+    function addAllOrder(item){
+        dispatch({
+            type: 'showOrder',
+            item
+        })
+    }
     const cartContext = {
+        order : state.order,
         item: state.item,
         addItem,
         deleteItem,
-        reset  
+        reset,
+        addAllOrder  
     }
 
     console.log(cartContext)

@@ -36,6 +36,7 @@ function CheckOut() {
           customer : customerOrdered
         }
       }))
+      itemContext.addAllOrder(itemContext.item)
     }
 
     if(isloading){
@@ -58,7 +59,6 @@ function CheckOut() {
 
 
   if(data && !error){
-    console.log(data)
     return(
       <Modal open={cartContext.progress === 'checkout'} onClose={handleOkay}>
         <Message title={"Successful Place order"} message={"Thankyou for order in reactfood please keep your email open for update"}/>
